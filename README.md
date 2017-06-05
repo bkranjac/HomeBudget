@@ -14,4 +14,5 @@ topics - SPA front end, API controllers, db backend, login and crud operations..
 * materialize css
 
   Currently there is a "guest@abc.com" user with equally easy password ("guess").
-  
+
+  This is very much work in progress still.
