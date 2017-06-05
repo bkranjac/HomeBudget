@@ -57,10 +57,10 @@ render () {
 }
 
 let documentReady  = () => {
-  ReactDOM.render(
-    <Main/>,
-    document.getElementById('reactDiv')
-  );
+  let reactNode = document.getElementById('reactDiv');
+  if (reactNode) {
+  ReactDOM.render( <Main/>,reactNode);
+  };
 };
 
 $(documentReady);
