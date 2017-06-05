@@ -3,10 +3,9 @@ export default class BudgetLocation extends React.Component {
     return (
           <li className="collection-item avatar">
               <i className="material-icons circle">person_pin</i>
-                <span className="title">{this.props.author}</span>
-                  <p>{this.props.body}</p>
+                <span className="title">{this.props.user}</span>
+                  <p>{this.props.place}</p>
           </li>
-
     )
   }
 }
