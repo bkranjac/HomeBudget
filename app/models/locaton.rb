@@ -1,0 +1,2 @@
+class Locaton < ApplicationRecord
+end

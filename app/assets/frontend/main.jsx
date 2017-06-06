@@ -42,6 +42,12 @@ class Main extends React.Component {
     newSubCategoriesList.unshift({ id: Date.now(), author: 'BK', body: subcategoryToAdd});
     this.setState({subcategoriesList : newSubCategoriesList });
   }
+
+  componentDidMount() {
+    $.ajax("/locations")
+    .success(data => this.setState({locationsList: data }) )
+    .error (error=>console.log(error));
+  }
 render () {
   return (
     <div className="container">
