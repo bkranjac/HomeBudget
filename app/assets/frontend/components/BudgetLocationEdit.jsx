@@ -1,5 +1,5 @@
 
-export default class BudgetLocationsBox extends React.Component {
+export default class BudgetLocationEdit extends React.Component {
  saveLocation(event) {
    event.preventDefault();
    this.props.saveLocation(this.refs.locationTextArea.value);
@@ -12,7 +12,7 @@ export default class BudgetLocationsBox extends React.Component {
             <form onSubmit={this.saveLocation.bind(this)}>
               <div className="input-field">
                 <textarea ref="locationTextArea" className="materialize-textarea" />
-                <label>It occured where?</label>
+                <label>Location</label>
                 <button type="submit" className="btn right">Add Location</button>
             </div>
           </form>

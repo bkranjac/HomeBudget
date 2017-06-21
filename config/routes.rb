@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :locations
-  resources :locatons
   get 'profile' => 'profile#index'
   patch 'profile' => 'profile#update'
 

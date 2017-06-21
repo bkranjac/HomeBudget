@@ -1,24 +1,25 @@
-import BudgetLocationBox from "./components/BudgetLocationBox"
+import BudgetLocationEdit from "./components/BudgetLocationEdit"
 import BudgetLocations from './components/BudgetLocations'
 
-import BudgetCategoryBox from "./components/BudgetCategoryBox"
+import BudgetCategoryEdit from "./components/BudgetCategoryEdit"
 import BudgetCategories from './components/BudgetCategories'
-import BudgetSubCategoryBox from "./components/BudgetSubCategoryBox"
+import BudgetSubCategoryEdit from "./components/BudgetSubCategoryEdit"
 import BudgetSubCategories from './components/BudgetSubCategories'
 
-let mockBudgetLocations =  [
-  { id: 1, user:'Branka', place:'Trader Joe\'s'}
-];
+import BudgetTransaction from './components/BudgetTransaction'
 
+let mockBudgetLocations =  [
+  { key:1, id: 1, user:'BK', place:'Trader Joe\'s'},
+  { key:2, id: 2, user:'BK', place:'Safeway'}
+];
 let mockBudgetCategories =  [
-  { id: 1, author:'Branka', body:'Household expenses'}
+  { id: 1, author:'BK', body:'Household expenses'}
 ];
 
 let mockBudgetSubCategories =  [
-  { id: 1, author:'Branka', body:'PG&E'},
-  { id: 2, author:'Branka', body:'Phone'}
+  { id: 1, author:'BK', body:'PG&E'},
+  { id: 2, author:'BK', body:'Phone'}
 ];
-
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -48,15 +49,18 @@ class Main extends React.Component {
     .success(data => this.setState({locationsList: data }) )
     .error (error=>console.log(error));
   }
+
 render () {
   return (
     <div className="container">
-      <BudgetLocationBox saveLocation={this.addLocation.bind(this)}/>
-      <BudgetLocations locations={this.state.locationsList}/>
-      <BudgetCategoryBox saveCategory={this.addCategory.bind(this)}/>
-      <BudgetCategories categories={this.state.categoriesList}/>
-      <BudgetSubCategoryBox saveSubCategory={this.addSubCategory.bind(this)}/>
-      <BudgetSubCategories subcategories={this.state.subcategoriesList}/>
+        <BudgetTransaction locations={this.state.locationsList} />
+
+          <BudgetLocationEdit saveLocation={this.addLocation.bind(this)}/>
+          <BudgetLocations locations={this.state.locationsList}/>
+          <BudgetCategoryEdit saveCategory={this.addCategory.bind(this)}/>
+          <BudgetCategories categories={this.state.categoriesList}/>
+          <BudgetSubCategoryEdit saveSubCategory={this.addSubCategory.bind(this)}/>
+          <BudgetSubCategories subcategories={this.state.subcategoriesList}/>
     </div>
   );
  }
@@ -66,6 +70,7 @@ let documentReady  = () => {
   let reactNode = document.getElementById('reactDiv');
   if (reactNode) {
   ReactDOM.render( <Main/>,reactNode);
+  $('select').material_select();
   };
 };
 

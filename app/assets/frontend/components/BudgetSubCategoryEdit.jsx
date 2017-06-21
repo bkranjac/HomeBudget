@@ -1,4 +1,4 @@
-export default class BudgetSubCategoryBox extends React.Component {
+export default class BudgetSubCategoryEdit extends React.Component {
  saveSubCategory(event) {
    event.preventDefault();
    this.props.saveSubCategory(this.refs.subcategoryTextArea.value);

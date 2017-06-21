@@ -1,4 +1,4 @@
-export default class BudgetCategoryBox extends React.Component {
+export default class BudgetCategoryEdit extends React.Component {
  saveCategory(event) {
    event.preventDefault();
    this.props.saveCategory(this.refs.categoryTextArea.value);
