@@ -1,3 +1,15 @@
+html {
+    background: #aebf76;
+    min-height: 100%;
+}
 body {
   padding: 1em;
+  background-repeat: no-repeat;
+  background: #aebf76;
+  background: -webkit-gradient(linear, left top, left bottom, from(#aebf76), to(#fff));
+  background: -moz-linear-gradient(top, #aebf76, #fff);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#aebf76', endColorstr='#ffffff');
 }
+#rightcolumn {
+
+  }

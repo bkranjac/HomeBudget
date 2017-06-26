@@ -23,13 +23,17 @@ let mockBudgetSubCategories =  [
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { locationsList : mockBudgetLocations, categoriesList : mockBudgetCategories, subcategoriesList : mockBudgetSubCategories }
+    this.state = { locationsList : [], categoriesList : [], subcategoriesList : [] }
   }
 
   addLocation(locationToAdd) {
-    let newLocationsList = this.state.locationsList;
-    newLocationsList.unshift({ id: Date.now(), user: 'BK', place: locationToAdd});
-    this.setState({locationsList : newLocationsList });
+    $.post("/locations", { location: locationToAdd })
+    .success(savedLocation => {
+      let newLocationsList = this.state.locationsList;
+      newLocationsList.unshift(savedLocation);
+      this.setState({locationsList : newLocationsList });
+    })
+    .error(error => console.log(error));
   }
 
   addCategory(categoryToAdd) {
@@ -52,15 +56,18 @@ class Main extends React.Component {
 
 render () {
   return (
-    <div className="container">
+    <div className="row">
+      <div className="col s6">
         <BudgetTransaction locations={this.state.locationsList} />
-
+      </div>
+      <div className="col s6" id="rightcolumn">
           <BudgetLocationEdit saveLocation={this.addLocation.bind(this)}/>
           <BudgetLocations locations={this.state.locationsList}/>
           <BudgetCategoryEdit saveCategory={this.addCategory.bind(this)}/>
           <BudgetCategories categories={this.state.categoriesList}/>
           <BudgetSubCategoryEdit saveSubCategory={this.addSubCategory.bind(this)}/>
           <BudgetSubCategories subcategories={this.state.subcategoriesList}/>
+      </div>
     </div>
   );
  }

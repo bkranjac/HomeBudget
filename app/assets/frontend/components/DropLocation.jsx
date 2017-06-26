@@ -13,8 +13,8 @@ render () {
   var locations = this.props.locations;
   return(
     <span>
-      <a className='dropdown-button btn' href='#' data-activates='selLocation'>Where did transaction occur?</a>
-      <ul id='selLocation' className='dropdown-content' >
+      <a className='grey dropdown-button btn' href='#' data-activates='selLocation'>Where did it happen?</a>
+      <ul id='selLocation' className='grey dropdown-content' >
         { locations.map(function(item, i) {
           return <li key={item.id} name={item.place} id={item.id}
               onClick={e => this.handleClick(e,item.place)}>

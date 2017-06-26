@@ -21,21 +21,33 @@ export default class BudgetTransaction extends React.Component {
 
     return (
       <form onSubmit={this.saveTransaction}>
-          <div >
-            <span className="input-field col s3">
+          <div className="row">
+            <span className="input-field col s6">
               <DropLocation locations={this.props.locations}
               onLocationChange={this.handleLocationChange}/>
           </span>
-            
-            </div>
-            <div className="card teal darken-1 ">
-              <div className="card-content white-text">
-                <span className="card-title">Transaction</span>
-                  <input type="text" className="input-field col s3"
-                    value={this.state.location_place}></input>
-                </div>
-              </div>
 
+            </div>
+            <div className="row">
+                  <div className="card grey darken-1 medium">
+                    <div className="card-content white-text">
+                      <span className="card-title">Transaction</span>
+                      <div class="input-field col s12">
+                        <input id="tlocation" type="text" className="validate"
+                          value={this.state.location_place} />
+                      </div>
+                      <div class="input-field col s12">
+                          <label for="tdate" className="white-text">Date:</label>
+                          <input id="tdate" type="date" className="date-picker"/>
+                      </div>
+                      <div class="input-field col s12">
+                          <label for="tamount" className="white-text">Amount</label>
+                          <input id="tamount" type="number" className="validate"/>
+                      </div>
+                      </div>
+
+                </div>
+            </div>
         </form>
     )
   }

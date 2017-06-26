@@ -13,7 +13,7 @@ export default class BudgetLocationEdit extends React.Component {
               <div className="input-field">
                 <textarea ref="locationTextArea" className="materialize-textarea" />
                 <label>Location</label>
-                <button type="submit" className="btn right">Add Location</button>
+                <button type="submit" className="btn right waves-effect waves-light blue-grey">Add Location</button>
             </div>
           </form>
         </div>
