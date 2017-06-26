@@ -8,12 +8,12 @@ topics - SPA front end, API controllers, db backend, login and crud operations..
 * Ruby version - 2.4
 * Rails - 5.0.3
 * PostgreSql 9.6
-* React
+* Reactjs
 * WebPack
 * devise
 * materialize css
 * babel-loader
 
-  Currently there is a "guest@abc.com" user with equally easy password ("guess").
+  Currently there is a "guest@abc.com" user with equally easy password.
 
   This is very much work in progress.
