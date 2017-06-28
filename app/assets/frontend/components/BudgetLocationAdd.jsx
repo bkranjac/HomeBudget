@@ -1,5 +1,5 @@
 
-export default class BudgetLocationEdit extends React.Component {
+export default class BudgetLocationAdd extends React.Component {
  saveLocation(event) {
    event.preventDefault();
    this.props.saveLocation(this.refs.locationTextArea.value);

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :transactions
+  resources :subcategories
+  resources :categories
   resources :locations
   get 'profile' => 'profile#index'
   patch 'profile' => 'profile#update'

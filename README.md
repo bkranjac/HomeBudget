@@ -12,8 +12,6 @@ topics - SPA front end, API controllers, db backend, login and crud operations..
 * WebPack
 * devise
 * materialize css
-* babel-loader
-
-  Currently there is a "guest@abc.com" user with equally easy password.
+* babel-loader transpiler
 
   This is very much work in progress.

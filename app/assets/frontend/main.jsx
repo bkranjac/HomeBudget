@@ -1,9 +1,9 @@
-import BudgetLocationEdit from "./components/BudgetLocationEdit"
+import BudgetLocationAdd from "./components/BudgetLocationAdd"
 import BudgetLocations from './components/BudgetLocations'
 
-import BudgetCategoryEdit from "./components/BudgetCategoryEdit"
+import BudgetCategoryAdd from "./components/BudgetCategoryAdd"
 import BudgetCategories from './components/BudgetCategories'
-import BudgetSubCategoryEdit from "./components/BudgetSubCategoryEdit"
+import BudgetSubCategoryAdd from "./components/BudgetSubCategoryAdd"
 import BudgetSubCategories from './components/BudgetSubCategories'
 
 import BudgetTransaction from './components/BudgetTransaction'
@@ -37,20 +37,34 @@ class Main extends React.Component {
   }
 
   addCategory(categoryToAdd) {
-    let newCategoriesList = this.state.categoriesList;
-    newCategoriesList.unshift({ id: Date.now(), author: 'BK', body: categoryToAdd});
-    this.setState({categoriesList : newCategoriesList });
+    $.post("/categories", { categoryName: categoryToAdd, categoryDescription: categoryToAdd })
+    .success(savedCategory => {
+      let newCategoriesList = this.state.categoriesList;
+      newCategoriesList.unshift(savedCategory);
+      this.setState({categoriesList : newCategoriesList });
+    })
+    .error(error => console.log(error));
   }
 
   addSubCategory(subcategoryToAdd) {
+    $.post("/subcategories", { subCategoryName: subcategoryToAdd, subCategoryDescription: subcategoryToAdd })
+    .success(savedSubCategory => {
     let newSubCategoriesList = this.state.subcategoriesList;
-    newSubCategoriesList.unshift({ id: Date.now(), author: 'BK', body: subcategoryToAdd});
+    newSubCategoriesList.unshift(savedSubCategory);
     this.setState({subcategoriesList : newSubCategoriesList });
+  })
+  .error(error => console.log(error));
   }
 
   componentDidMount() {
     $.ajax("/locations")
     .success(data => this.setState({locationsList: data }) )
+    .error (error=>console.log(error));
+    $.ajax("/categories")
+    .success(data => this.setState({categoriesList: data }) )
+    .error (error=>console.log(error));
+    $.ajax("/subcategories")
+    .success(data => this.setState({subcategoriesList: data }) )
     .error (error=>console.log(error));
   }
 
@@ -58,14 +72,14 @@ render () {
   return (
     <div className="row">
       <div className="col s6">
-        <BudgetTransaction locations={this.state.locationsList} />
+        <BudgetTransaction locations={this.state.locationsList} subcategories={this.state.subcategoriesList} />
       </div>
       <div className="col s6" id="rightcolumn">
-          <BudgetLocationEdit saveLocation={this.addLocation.bind(this)}/>
+          <BudgetLocationAdd saveLocation={this.addLocation.bind(this)}/>
           <BudgetLocations locations={this.state.locationsList}/>
-          <BudgetCategoryEdit saveCategory={this.addCategory.bind(this)}/>
+          <BudgetCategoryAdd saveCategory={this.addCategory.bind(this)}/>
           <BudgetCategories categories={this.state.categoriesList}/>
-          <BudgetSubCategoryEdit saveSubCategory={this.addSubCategory.bind(this)}/>
+          <BudgetSubCategoryAdd saveSubCategory={this.addSubCategory.bind(this)}/>
           <BudgetSubCategories subcategories={this.state.subcategoriesList}/>
       </div>
     </div>
