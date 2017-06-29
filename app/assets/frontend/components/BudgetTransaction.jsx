@@ -5,9 +5,10 @@ export default class BudgetTransaction extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {location_id: 0, location_place: '', subcategory_id:0, subcategory_name: ''};
+    this.state = {location_id: 0, location_place: '', subcategory_id:0, subcategory_name: '', isFixed: true, isRecurring: false, amount: 0};
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubCategoryChange = this.handleSubCategoryChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.saveTransaction = this.saveTransaction.bind(this);
   }
 
@@ -20,10 +21,22 @@ export default class BudgetTransaction extends React.Component {
 
   }
 
+  handleInputChange(event) {
+     const target = event.target;
+     const value = target.type === 'checkbox' ? target.checked : target.value;
+     const name = target.name;
+
+     this.setState({
+       [name]: value
+     })
+   }
+
   saveTransaction(event) {
     event.preventDefault();
-    this.setState({value: event.target.value});
+    this.props.saveTransaction(this.state);
+
   }
+
   render() {
 
     return (
@@ -39,23 +52,38 @@ export default class BudgetTransaction extends React.Component {
             </span>
             </div>
             <div className="row">
-                  <div className="card grey darken-1 medium">
+                  <div className="card grey darken-1 long">
                     <div className="card-content white-text">
                       <span className="card-title">Transaction</span>
-                      <div className="input-field col s6">
-                          <input id="tamount" type="number" className="validate" />
-                          <label htmlFor="tamount" className="white-text">Amount</label>
+                      <div className="row">
+                        <div className="input-field  col s6">
+
+                          <input id="tdate" name="transactiondate" type="date"
+                            className="datepicker" onChange={this.handleInputChange}/>
+                        </div>
+                      <div className="input-field col s6 right">
+                          <input id="tamount" name="amount" type="number" className="validate" onChange={this.handleInputChange}/>
+                          <label htmlFor="tamount" className="white-text" >Amount</label>
                       </div>
-                      <div className="input-field col s6">
-                         <input id="tIsFixed" type="checkbox" name="isFixed" defaultChecked />
+                    </div>
+                      <div className="row">
+                      <div className="input-field col s8">
+
+                          <textarea id="tdescription" name="description" type="textarea" className="materialize-textarea" onChange={this.handleInputChange}/>
+                          <label htmlFor="tdescription" className="white-text">Description:</label>
+                      </div>
+                      <div className="input-field col s2">
+                         <input id="tIsFixed" type="checkbox" name="isFixed" defaultChecked
+                           onChange={this.handleInputChange}/>
                          <label htmlFor="tIsFixed">Fixed</label>
-                         <input id="tIsRecurring" type="checkbox" name="isRecurring" />
+                      </div>
+                      <div className="input-field col s2">
+                         <input id="tIsRecurring" type="checkbox" name="isRecurring"
+                           onChange={this.handleInputChange}/>
                          <label htmlFor="tIsRecurring">Recurring</label>
                       </div>
-                      <div className="col s12">
-                        <label htmlFor="tdate" className="white-text">Date:</label>
-                        <input id="tdate" type="date" className="date-picker"/>
-                      </div>
+                    </div>
+                    <div className="row">
                       <div className="input-field col s6">
                         <input placeholder="Select location" id="tlocation" type="text" readOnly="readOnly" className="validate"
                           value={this.state.location_place} />
@@ -65,6 +93,10 @@ export default class BudgetTransaction extends React.Component {
                           value={this.state.subcategory_name} />
                       </div>
                     </div>
+                    <div className="row">
+                       <input type="submit" value="Submit" className="btn right"/>
+                    </div>
+                  </div>
                 </div>
             </div>
         </form>

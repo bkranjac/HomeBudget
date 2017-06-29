@@ -23,7 +23,7 @@ let mockBudgetSubCategories =  [
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { locationsList : [], categoriesList : [], subcategoriesList : [] }
+    this.state = { locationsList : [], categoriesList : [], subcategoriesList : [], transactionsList: [] }
   }
 
   addLocation(locationToAdd) {
@@ -56,6 +56,25 @@ class Main extends React.Component {
   .error(error => console.log(error));
   }
 
+ addTransaction(tToAdd){
+   var tdata = { description: tToAdd.description,
+                 tdate: tToAdd.transactiondate,
+                 amount: tToAdd.amount,
+                 isfixed: tToAdd.isFixed,
+                 isrecurring: tToAdd.isRecurring,
+                 location_id: tToAdd.location_id,
+                 subcategory_id: tToAdd.subcategory_id
+               };
+   $.post("/transactions", tdata)
+    .success(savedTransaction => {
+      let newTransactionsList = this.state.transactionsList;
+      newTransactionsList.unshift(savedTransaction);
+      this.setState({transactionsList : newTransactionsList });
+               })
+    .error(error => console.log(error));
+
+ }
+
   componentDidMount() {
     $.ajax("/locations")
     .success(data => this.setState({locationsList: data }) )
@@ -66,13 +85,18 @@ class Main extends React.Component {
     $.ajax("/subcategories")
     .success(data => this.setState({subcategoriesList: data }) )
     .error (error=>console.log(error));
+    $.ajax("/transactions")
+    .success (data=> this.setState({transactionsList: data}))
+    .error (error => console.log(error));
   }
 
 render () {
   return (
     <div className="row">
       <div className="col s6">
-        <BudgetTransaction locations={this.state.locationsList} subcategories={this.state.subcategoriesList} />
+        <BudgetTransaction locations={this.state.locationsList}
+                           subcategories={this.state.subcategoriesList}
+                           saveTransaction={this.addTransaction.bind(this)} />
       </div>
       <div className="col s6" id="rightcolumn">
           <BudgetLocationAdd saveLocation={this.addLocation.bind(this)}/>
