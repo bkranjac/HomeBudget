@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   def index
-    render json: Transaction.all
+    render json: Transaction.includes(:location, :subcategory).all
   end
 
   def create

@@ -12,7 +12,7 @@ export default class DropSubCategories extends React.Component {
 render () {
   var subcategories = this.props.subcategories;
   return(
-    <span>
+    <span className="mdl-selectfield--floating-label">
       <a className='grey dropdown-button btn' href='#' data-activates='selSubCategories'>Select subcategory</a>
       <ul id='selSubCategories' className='grey dropdown-content' >
         { subcategories.map(function(item, i) {

@@ -10,6 +10,23 @@ body {
   background: -moz-linear-gradient(top, #aebf76, #fff);
   filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#aebf76', endColorstr='#ffffff');
 }
-#rightcolumn {
-
+.rightcolumn {
+  padding: 1em;
+  background-repeat: no-repeat;
+  background: #aabf72;
+  background: -webkit-gradient(linear, left top, left bottom, from(#aabf72), to(#fff));
+  background: -moz-linear-gradient(top, #aabf72), #fff);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#aabf72),', endColorstr='#ffffff');
   }
+.field__input {
+    background-color: white;
+    color: #333333;
+}
+.field__input {
+    border-radius: 4px;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.94em 0.8em;
+    word-break: normal;
+}

@@ -1,3 +1,4 @@
+import BudgetTabs from "./components/BudgetTabs"
 import BudgetLocationAdd from "./components/BudgetLocationAdd"
 import BudgetLocations from './components/BudgetLocations'
 
@@ -6,7 +7,8 @@ import BudgetCategories from './components/BudgetCategories'
 import BudgetSubCategoryAdd from "./components/BudgetSubCategoryAdd"
 import BudgetSubCategories from './components/BudgetSubCategories'
 
-import BudgetTransaction from './components/BudgetTransaction'
+import BudgetTransactionAdd from './components/BudgetTransactionAdd'
+import BudgetTransactions from './components/BudgetTransactions'
 
 let mockBudgetLocations =  [
   { key:1, id: 1, user:'BK', place:'Trader Joe\'s'},
@@ -63,7 +65,9 @@ class Main extends React.Component {
                  isfixed: tToAdd.isFixed,
                  isrecurring: tToAdd.isRecurring,
                  location_id: tToAdd.location_id,
-                 subcategory_id: tToAdd.subcategory_id
+                 loc_name: tToAdd.loc_name,
+                 subcategory_id: tToAdd.subcategory_id,
+                 subcat_name: tToAdd.subcat_name
                };
    $.post("/transactions", tdata)
     .success(savedTransaction => {
@@ -93,16 +97,26 @@ class Main extends React.Component {
 render () {
   return (
     <div className="row">
-      <div className="col s6">
-        <BudgetTransaction locations={this.state.locationsList}
+      <BudgetTabs />
+      <div id="transactions" className="col s12">
+        <div className="col s6">
+          <BudgetTransactions transactions={this.state.transactionsList} />
+        </div>
+        <div className="col s6">
+            <BudgetTransactionAdd locations={this.state.locationsList}
                            subcategories={this.state.subcategoriesList}
                            saveTransaction={this.addTransaction.bind(this)} />
+         </div>
       </div>
-      <div className="col s6" id="rightcolumn">
+      <div id="locations" className="col s12">
           <BudgetLocationAdd saveLocation={this.addLocation.bind(this)}/>
           <BudgetLocations locations={this.state.locationsList}/>
+      </div>
+      <div id="categories" className="col s12">
           <BudgetCategoryAdd saveCategory={this.addCategory.bind(this)}/>
           <BudgetCategories categories={this.state.categoriesList}/>
+      </div>
+      <div id="subcategories" className="col s12">
           <BudgetSubCategoryAdd saveSubCategory={this.addSubCategory.bind(this)}/>
           <BudgetSubCategories subcategories={this.state.subcategoriesList}/>
       </div>
