@@ -110,18 +110,31 @@ render () {
                            saveTransaction={this.addTransaction.bind(this)} />
          </div>
       </div>
-      <div id="locations" className="col s12">
-          <BudgetLocationAdd saveLocation={this.addLocation.bind(this)}/>
-          <BudgetLocations locations={this.state.locationsList}/>
+      <div id="locations">
+        <div className="col s6">
+        <BudgetLocationAdd saveLocation={this.addLocation.bind(this)}/>
+        </div>
+        <div className="col s6">
+        <BudgetLocations locations={this.state.locationsList}/>
+      </div>>
+
       </div>
-      <div id="categories" className="col s12">
+      <div id="categories">
+        <div className="col s6">
           <BudgetCategoryAdd saveCategory={this.addCategory.bind(this)}/>
+        </div>
+        <div className="col s6">
           <BudgetCategories categories={this.state.categoriesList}/>
       </div>
-      <div id="subcategories" className="col s12">
+    </div>
+      <div id="subcategories">
+        <div className="col s6">
           <BudgetSubCategoryAdd categories={this.state.categoriesList}
                                 saveSubCategory={this.addSubCategory.bind(this)}/>
+        </div>
+        <div className="col s6">
           <BudgetSubCategories subcategories={this.state.subcategoriesList}/>
+        </div>
       </div>
     </div>
   );

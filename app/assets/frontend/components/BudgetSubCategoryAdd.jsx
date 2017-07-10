@@ -31,21 +31,21 @@ export default class BudgetSubCategoryAdd extends React.Component {
     return (
       <div className="row">
             <form onSubmit={this.saveSubCategory.bind(this)}>
-              <div className="input-field col s3">
+              <div className="input-field col s6">
                 <label htmlFor="subName" className="white-text">Name:</label>
                 <textarea id="subName" name="subName"
                   type="textarea" className="materialize-textarea" onChange={this.handleInputChange}/>
                 </div>
-                <div className="input-field col s3">
+                <div className="input-field col s6">
                   <label htmlFor="subDescription" className="white-text">Description:</label>
                   <textarea id="subDescription" name="subDescription" ref="subcategoryTextArea"
                     type="textarea" className="materialize-textarea" onChange={this.handleInputChange}/>
                   </div>
-                  <div className="input-field col s3">
+                  <div className="input-field col s6">
                     <DropCategories categories={this.props.categories}
                     onCategoryChange={this.handleCategoryChange} />
                 </div>
-                <div className="input-field col s3">
+                <div className="input-field col s6">
                   <input placeholder="Select category" id="tcategory" type="text" readOnly="readOnly" className="validate"
                     value={this.state.category_name} />
                 </div>
