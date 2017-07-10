@@ -49,7 +49,9 @@ class Main extends React.Component {
   }
 
   addSubCategory(subcategoryToAdd) {
-    $.post("/subcategories", { subCategoryName: subcategoryToAdd, subCategoryDescription: subcategoryToAdd })
+    $.post("/subcategories", { name: subcategoryToAdd.subName,
+                               description: subcategoryToAdd.subDescription,
+                               category_id: subcategoryToAdd.category_id })
     .success(savedSubCategory => {
     let newSubCategoriesList = this.state.subcategoriesList;
     newSubCategoriesList.unshift(savedSubCategory);
@@ -117,7 +119,8 @@ render () {
           <BudgetCategories categories={this.state.categoriesList}/>
       </div>
       <div id="subcategories" className="col s12">
-          <BudgetSubCategoryAdd saveSubCategory={this.addSubCategory.bind(this)}/>
+          <BudgetSubCategoryAdd categories={this.state.categoriesList}
+                                saveSubCategory={this.addSubCategory.bind(this)}/>
           <BudgetSubCategories subcategories={this.state.subcategoriesList}/>
       </div>
     </div>

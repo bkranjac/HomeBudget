@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   def index
-    render json: Transaction.includes(:location, :subcategory).all
+    render json: Transaction.includes(:location, :subcategory).order(created_at: :desc).all
   end
 
   def create
