@@ -116,7 +116,7 @@ render () {
         </div>
         <div className="col s6">
         <BudgetLocations locations={this.state.locationsList}/>
-      </div>>
+      </div>
 
       </div>
       <div id="categories">
