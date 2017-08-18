@@ -3,6 +3,7 @@ export default class BudgetCategoryAdd extends React.Component {
    event.preventDefault();
    this.props.saveCategory(this.refs.categoryTextArea.value);
    this.refs.categoryTextArea.value = '';
+   this.refs.categoryDescTextArea.value = '';
 
  }
   render() {
@@ -11,7 +12,7 @@ export default class BudgetCategoryAdd extends React.Component {
             <form onSubmit={this.saveCategory.bind(this)}>
               <div className="input-field col c6">
                 <textarea ref="categoryTextArea" className="materialize-textarea" />
-                <label>Type of transaction</label>
+                <label>Type of category</label>
                 </div>
                 <div className="input-field col c6">
                   <textarea ref="categoryDescTextArea" className="materialize-textarea" />

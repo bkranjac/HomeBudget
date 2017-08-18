@@ -29,7 +29,7 @@ class Main extends React.Component {
   }
 
   addLocation(locationToAdd) {
-    $.post("/locations", { location: locationToAdd })
+    $.post("/locations", { place: locationToAdd })
     .success(savedLocation => {
       let newLocationsList = this.state.locationsList;
       newLocationsList.unshift(savedLocation);
@@ -39,7 +39,7 @@ class Main extends React.Component {
   }
 
   addCategory(categoryToAdd) {
-    $.post("/categories", { categoryName: categoryToAdd, categoryDescription: categoryToAdd })
+    $.post("/categories", { name: categoryToAdd, description: categoryToAdd })
     .success(savedCategory => {
       let newCategoriesList = this.state.categoriesList;
       newCategoriesList.unshift(savedCategory);
