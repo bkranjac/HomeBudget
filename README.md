@@ -16,4 +16,4 @@ topics - SPA front end, API controllers, db backend, login and crud operations..
 
   This is very much work in progress.
   Looking like this:
-  [Budget_Transactions.png](https://postimg.org/image/86lz51rs5/)
+  [Budget_Transactions.png](/app/assets/images/Budget_Transactions.png)
